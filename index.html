@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostWorld - Cake Order Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Fixed Navigation Bar -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">🎂</div>
+                <div class="brand-text">
+                    <h1>FROSTWORLD</h1>
+                    <p>Sweet Moments, Sweeter Memories</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#cakes">Cakes</a></li>
+                    <li><a href="#order">Order</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Landing Page Section -->
+    <section class="landing" id="home">
+        <div class="landing-content">
+            <h2>Welcome to FrostWorld</h2>
+            <p>Indulge in our handcrafted cakes made with love and the finest ingredients. Every bite is a celebration!</p>
+            <a href="#order" class="cta-button">Order Now</a>
+        </div>
+    </section>
+
+    <!-- Cake Order Calculator Section -->
+    <section class="calculator-section" id="order">
+        <div class="calculator-container">
+            <h2>Cake Order Bill Calculator</h2>
+            <p class="subtitle">Customize your perfect cake and get instant pricing</p>
+            
+            <form id="cakeOrderForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cakeName">Cake Name</label>
+                        <input type="text" id="cakeName" placeholder="e.g., Chocolate Truffle" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cakeType">Cake Type</label>
+                        <select id="cakeType" onchange="calculateBill()">
+                            <option value="500">Chocolate Cake - ₹500</option>
+                            <option value="600">Vanilla Cake - ₹600</option>
+                            <option value="750">Red Velvet - ₹750</option>
+                            <option value="800">Black Forest - ₹800</option>
+                            <option value="900">Fruit Cake - ₹900</option>
+                            <option value="1000">Custom Design - ₹1000</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" min="0.5" step="0.5" value="1" oninput="calculateBill()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" min="1" value="1" oninput="calculateBill()">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label>Add-ons</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="150" onchange="calculateBill()"> 
+                                <span>Candles & Knife - ₹150</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="200" onchange="calculateBill()"> 
+                                <span>Premium Packaging - ₹200</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="100" onchange="calculateBill()"> 
+                                <span>Greeting Card - ₹100</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="300" onchange="calculateBill()"> 
+                                <span>Photo Print on Cake - ₹300</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="deliveryType">Delivery Type</label>
+                        <select id="deliveryType" onchange="calculateBill()">
+                            <option value="0">Store Pickup - Free</option>
+                            <option value="100">Standard Delivery - ₹100</option>
+                            <option value="200">Express Delivery - ₹200</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="discount">Discount Code</label>
+                        <input type="text" id="discount" placeholder="Enter code" oninput="calculateBill()">
+                    </div>
+                </div>
+
+                <div class="bill-summary">
+                    <h3>Order Summary</h3>
+                    <div class="bill-line">
+                        <span>Cake Base Price:</span>
+                        <span id="basePrice">₹0</span>
+                    </div>
+                    <div class="bill-line">
+                        <span>Add-ons Total:</span>
+                        <span id="addonsTotal">₹0</span>
+                    </div>
+                    <div class="bill-line">
+                        <span>Delivery Charge:</span>
+                        <span id="deliveryCharge">₹0</span>
+                    </div>
+                    <div class="bill-line">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="bill-line discount-line">
+                        <span>Discount:</span>
+                        <span id="discountAmount">₹0</span>
+                    </div>
+                    <div class="bill-line tax-line">
+                        <span>GST (5%):</span>
+                        <span id="gstAmount">₹0</span>
+                    </div>
+                    <div class="bill-line total-line">
+                        <span>Total Amount:</span>
+                        <span id="totalAmount">₹0</span>
+                    </div>
+                </div>
+
+                <button type="button" onclick="placeOrder()" class="order-btn">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 FrostWorld. All rights reserved. | Made with ❤️ and Sugar</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
